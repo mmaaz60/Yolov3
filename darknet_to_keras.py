@@ -55,8 +55,7 @@ def unique_config_sections(config_file):
     return output_stream
 
 
-# %%
-def _main(args):
+def main(args):
     config_path = os.path.expanduser(args.config_path)
     weights_path = os.path.expanduser(args.weights_path)
     assert config_path.endswith('.cfg'), '{} is not a .cfg file'.format(
@@ -260,4 +259,4 @@ def _main(args):
 
 
 if __name__ == '__main__':
-    _main(parser.parse_args())
+    main(parser.parse_args())
