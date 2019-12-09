@@ -80,7 +80,8 @@ def create_yolo_annotation_file(darklabel_txt_path, image_folder_path, yolo_txt_
             # write annotations only if image exists
             if os.path.exists(image_path):
                 yolo_txt.write(image_path + " ")
-                # Hard coding the label 0 for person
+                # Hard coding the label 0 for person. For general implementation you can have .names file with class
+                # names and parse label value from it.
                 yolo_txt.write(" ".join([f"{o.x},{o.y},{int(o.x) + int(o.w)},{int(o.y) + int(o.h)},{0}"
                                          for o in object_list]))
                 yolo_txt.write("\n")
