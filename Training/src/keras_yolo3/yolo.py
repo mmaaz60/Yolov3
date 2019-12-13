@@ -13,8 +13,8 @@ from keras.models import load_model
 from keras.layers import Input
 from PIL import Image, ImageFont, ImageDraw
 
-from .yolo3.model import yolo_eval, yolo_body, tiny_yolo_body
-from .yolo3.utils import letterbox_image
+from yolo3.model import yolo_eval, yolo_body, tiny_yolo_body
+from yolo3.utils import letterbox_image
 import os
 from keras.utils import multi_gpu_model
 
@@ -204,7 +204,7 @@ def detect_video(yolo, video_path, output_path=""):
         print('Processing {} with frame size {} at {:.1f} FPS'.format(os.path.basename(video_path), video_size,
                                                                       video_fps))
         # print("!!! TYPE:", type(output_path), type(video_FourCC), type(video_fps), type(video_size))
-        out = cv2.VideoWriter(output_path, video_FourCC, video_fps, video_size)
+        out = cv2.VideoWriter(output_path, video_FourCC, 1, video_size)
     accum_time = 0
     curr_fps = 0
     fps = "FPS: ??"

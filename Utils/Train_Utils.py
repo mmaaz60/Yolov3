@@ -4,34 +4,18 @@ Retrain the YOLO model for your own dataset.
 """
 
 import os
-import sys
 
-
-def get_parent_dir(n=1):
-    """ returns the n-th parent dicrectory of the current
-    working directory """
-    current_path = os.getcwd()
-    for k in range(n):
-        current_path = os.path.dirname(current_path)
-    return current_path
-
-
-src_path = os.path.join(get_parent_dir(2), 'src')
-sys.path.append(src_path)
 
 import numpy as np
 import keras.backend as K
 from keras.layers import Input, Lambda
 from keras.models import Model
-from keras.optimizers import Adam
-from keras.callbacks import TensorBoard, ModelCheckpoint, ReduceLROnPlateau, EarlyStopping
-from keras_yolo3.yolo3.model import preprocess_true_boxes, yolo_body, tiny_yolo_body, yolo_loss
-from keras_yolo3.yolo3.utils import get_random_data
-from PIL import Image
+from yolo3.model import preprocess_true_boxes, yolo_body, tiny_yolo_body, yolo_loss
+from yolo3.utils import get_random_data
 
 
 def get_classes(classes_path):
-    '''loads the classes'''
+    """loads the classes"""
     with open(classes_path) as f:
         class_names = f.readlines()
     class_names = [c.strip() for c in class_names]
@@ -39,7 +23,7 @@ def get_classes(classes_path):
 
 
 def get_anchors(anchors_path):
-    '''loads the anchors from a file'''
+    """loads the anchors from a file"""
     with open(anchors_path) as f:
         anchors = f.readline()
     anchors = [float(x) for x in anchors.split(',')]
@@ -48,7 +32,7 @@ def get_anchors(anchors_path):
 
 def create_model(input_shape, anchors, num_classes, load_pretrained=True, freeze_body=2,
                  weights_path='keras_yolo3/model_data/yolo_weights.h5'):
-    '''create the training model'''
+    """create the training model"""
     K.clear_session()  # get a new session
     image_input = Input(shape=(None, None, 3))
     h, w = input_shape
@@ -79,7 +63,7 @@ def create_model(input_shape, anchors, num_classes, load_pretrained=True, freeze
 
 def create_tiny_model(input_shape, anchors, num_classes, load_pretrained=True, freeze_body=2,
                       weights_path='keras_yolo3/model_data/tiny_yolo_weights.h5'):
-    '''create the training model, for Tiny YOLOv3'''
+    """create the training model, for Tiny YOLOv3"""
     K.clear_session()  # get a new session
     image_input = Input(shape=(None, None, 3))
     h, w = input_shape
@@ -135,18 +119,19 @@ def data_generator_wrapper(annotation_lines, batch_size, input_shape, anchors, n
 
 
 def ChangeToOtherMachine(filelist, repo='TrainYourOwnYOLO', remote_machine=''):
-    '''
-    Takes a list of file_names located in a repo and changes it to the local machines file names. File must be executed from withing the repository
+    """
+    Takes a list of file_names located in a repo and changes it to the local machines file names. File must be
+    executed from withing the repository
 
     Example:
 
     '/home/ubuntu/TrainYourOwnYOLO/Data/Street_View_Images/vulnerable/test.jpg'
 
     Get's converted to
-    
+
     'C:/Users/Anton/TrainYourOwnYOLO/Data/Street_View_Images/vulnerable/test.jpg'
 
-    '''
+    """
     filelist = [x.replace("\\", "/") for x in filelist]
     if repo[-1] == '/':
         repo = repo[:-1]
