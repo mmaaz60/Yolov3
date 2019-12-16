@@ -15,12 +15,12 @@ def parse_args():
 
     parser.add_argument(
         "--input_path", type=str, default="/home/maaz/Desktop/Visitor_Tracking/TrainingPipeline_TF2.0"
-                                          "/TrainYourOwnYOLO/Data/image_test",
+                                          "/TrainYourOwnYOLO/Data/cam15/test_videos",
         help="Path to image/video directory. All subdirectories will be included."
     )
     parser.add_argument(
         "--output", type=str, default="/home/maaz/Desktop/Visitor_Tracking/TrainingPipeline_TF2.0/TrainYourOwnYOLO"
-                                      "/Data/image_test_results",
+                                      "/Data/cam15/test_videos_results",
         help="Output path for detection results."
     )
     parser.add_argument(
@@ -34,7 +34,7 @@ def parse_args():
     parser.add_argument(
         '--yolo_model', type=str, dest='model_path', default="/home/maaz/Desktop/Visitor_Tracking"
                                                              "/TrainingPipeline_TF2.0/TrainYourOwnYOLO/checkpoints"
-                                                             "/logs/trained_weights_final.h5",
+                                                             "/cam15/logs/trained_weights_final.h5",
         help="Path to pre-trained weight files."
     )
     parser.add_argument(
@@ -52,12 +52,12 @@ def parse_args():
         help='Number of GPU to use. Default is 1'
     )
     parser.add_argument(
-        '--confidence', type=float, dest='score', default=0.25,
+        '--confidence', type=float, dest='score', default=0.7,
         help='Threshold for YOLO object confidence score to show predictions. Default is 0.25.'
     )
     parser.add_argument(
         '--box_file', type=str, dest='box', default="/home/maaz/Desktop/Visitor_Tracking/TrainingPipeline_TF2.0"
-                                                    "/TrainYourOwnYOLO/Data/image_test_results/output_box.txt",
+                                                    "/TrainYourOwnYOLO/Data/test/test_videos_results/output_box.txt",
         help="File to save bounding box results to."
     )
 

@@ -17,8 +17,8 @@ def parse_args():
     parser = argparse.ArgumentParser(argument_default=argparse.SUPPRESS)
 
     parser.add_argument(
-        "--annotation_file", type=str,  default="/home/maaz/Desktop/Visitor_Tracking/TrainingPipeline_TF2.0/"
-                                                "TrainYourOwnYOLO/Data/ch04_yolo.txt",
+        "--annotation_file", type=str,  default="/home/maaz/Desktop/Visitor_Tracking/TrainingPipeline_TF2.0"
+                                                "/TrainYourOwnYOLO/Data/cam15/yolo.txt",
         help="Path to annotation file for Yolo."
     )
     parser.add_argument(
@@ -28,7 +28,7 @@ def parse_args():
     )
     parser.add_argument(
         "--log_dir", type=str,  default="/home/maaz/Desktop/Visitor_Tracking/TrainingPipeline_TF2.0/"
-                                        "TrainYourOwnYOLO/checkpoints/logs",
+                                        "TrainYourOwnYOLO/checkpoints/cam15/logs",
         help="Folder to save training logs and trained weights to."
     )
     parser.add_argument(
@@ -37,8 +37,8 @@ def parse_args():
         help="Path to YOLO anchors."
     )
     parser.add_argument(
-        "--weights_path", type=str,  default="/home/maaz/Desktop/Visitor_Tracking/TrainingPipeline_TF2.0/"
-                                             "TrainYourOwnYOLO/checkpoints/yolov3-tiny.h5",
+        "--weights_path", type=str,  default="/home/maaz/Desktop/Visitor_Tracking/TrainingPipeline_TF2.0"
+                                             "/TrainYourOwnYOLO/checkpoints/cam15/logs/checkpoint.h5",
         help="Path to pre-trained YOLO weights."
     )
     parser.add_argument(
@@ -54,7 +54,7 @@ def parse_args():
         help="The input size of the network. The number must be a multiple of 32."
     )
     parser.add_argument(
-        "--batch_size", type=float, default=32,
+        "--batch_size", type=float, default=8,
         help="The size of mini batches used for training."
     )
     parser.add_argument(
@@ -62,7 +62,7 @@ def parse_args():
         help="Random seed value to make script deterministic. Default is 'None', i.e. non-deterministic."
     )
     parser.add_argument(
-        "--epochs", type=float, default=50,
+        "--epochs", type=float, default=5,
         help="Number of epochs for training last layers and number of epochs for fine-tuning layers. Default is 50."
     )
 

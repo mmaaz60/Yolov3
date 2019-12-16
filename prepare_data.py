@@ -21,21 +21,21 @@ def parse_args():
 
     parser.add_argument(
         "--video_folder_path", type=str, default="/home/maaz/Desktop/Visitor_Tracking/TrainingPipeline_TF2.0"
-                                                 "/TrainYourOwnYOLO/Data/training_videos",
+                                                 "/TrainYourOwnYOLO/Data/cam15/training_videos",
         help="Absolute path to the video file"
     )
     parser.add_argument(
         "--annotation_txt_folder_path", type=str, default="/home/maaz/Desktop/Visitor_Tracking/TrainingPipeline_TF2.0"
-                                                          "/TrainYourOwnYOLO/Data/training_annotations",
+                                                          "/TrainYourOwnYOLO/Data/cam15/training_annotations",
         help="Absolute path to annotation .txt file"
     )
     parser.add_argument(
         "--output_txt_path", type=str, default="/home/maaz/Desktop/Visitor_Tracking/TrainingPipeline_TF2.0"
-                                               "/TrainYourOwnYOLO/Data/ch04_yolo.txt",
+                                               "/TrainYourOwnYOLO/Data/cam15/yolo.txt",
         help="Absolute path to the output .txt file")
     parser.add_argument(
         "--image_folder", type=str, default="/home/maaz/Desktop/Visitor_Tracking/TrainingPipeline_TF2.0"
-                                            "/TrainYourOwnYOLO/Data/Images",
+                                            "/TrainYourOwnYOLO/Data/cam15/Images",
         help="Absolute path to output images folder"
     )
 
@@ -84,7 +84,7 @@ def create_yolo_annotation_file(darklabel_txt_path, image_folder_path, yolo_txt_
             object_list, frame_no = ParseLine(line)
 
             # Empty frame annotations (In the start and in between non-empty frames)
-            if (int(frame_no) + start > previous + 1):
+            if int(frame_no) + start > previous + 1:
                 for i in range(previous + 1, int(frame_no) + start):
                     image_path = image_folder_path + "/" + str(i) + ".jpg"
                     if os.path.exists(image_path):
